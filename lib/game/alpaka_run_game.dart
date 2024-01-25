@@ -15,12 +15,19 @@ class AlpakaRunGame extends FlameGame {
   Future<void> onLoad() async {
     add(Background());
     add(Alpaka());
-    _pumaSpawner = SpawnComponent(
-      factory: (_) => Puma(),
-      period: 3,
+    _pumaSpawner = SpawnComponent.periodRange(
+      factory: (index) => Puma(),
+      minPeriod: 2,
+      maxPeriod: 3,
+      selfPositioning: true,
+    );
+    _hawkSpawner = SpawnComponent.periodRange(
+      factory: (index) => Hawk(),
+      minPeriod: 2,
+      maxPeriod: 3,
       selfPositioning: true,
     );
     add(_pumaSpawner);
-    add(Hawk());
+    add(_hawkSpawner);
   }
 }

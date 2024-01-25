@@ -2,7 +2,7 @@ import 'package:alpaka_run/game/alpaka_run_game.dart';
 import 'package:flame/components.dart';
 
 class Puma extends SpriteAnimationComponent with HasGameRef<AlpakaRunGame> {
-  Puma() : super(size: Vector2(300, 141), anchor: Anchor.bottomCenter);
+  Puma() : super(size: Vector2(200, 100), anchor: Anchor.bottomCenter);
 
   @override
   Future<void> onLoad() async {
@@ -16,7 +16,7 @@ class Puma extends SpriteAnimationComponent with HasGameRef<AlpakaRunGame> {
       SpriteAnimationData.sequenced(
         amount: 3,
         stepTime: 0.2,
-        textureSize: Vector2(1024, 482),
+        textureSize: Vector2(1024, 512),
       ),
     );
   }
