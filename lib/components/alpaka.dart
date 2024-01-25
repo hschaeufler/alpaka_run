@@ -1,10 +1,13 @@
+import 'package:alpaka_run/components/hawk.dart';
+import 'package:alpaka_run/components/puma.dart';
 import 'package:alpaka_run/effect/jump_effect.dart';
 import 'package:alpaka_run/game/alpaka_run_game.dart';
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 
 class Alpaka extends SpriteAnimationComponent
-    with HasGameReference<AlpakaRunGame>, TapCallbacks {
+    with HasGameReference<AlpakaRunGame>, TapCallbacks, CollisionCallbacks {
   Alpaka() : super(size: Vector2(150, 150), anchor: Anchor.bottomLeft);
 
   @override
@@ -20,6 +23,8 @@ class Alpaka extends SpriteAnimationComponent
 
     position.x = width / 4;
     position.y = game.size.y + 5;
+
+    add(RectangleHitbox());
   }
 
   @override
@@ -29,5 +34,18 @@ class Alpaka extends SpriteAnimationComponent
 
   void startJump() {
     add(JumpEffect(Vector2(0, game.size.y * -0.5)));
+  }
+
+  @override
+  void onCollisionStart(
+    Set<Vector2> intersectionPoints,
+    PositionComponent other,
+  ) {
+    super.onCollisionStart(intersectionPoints, other);
+
+    if (other is Hawk || other is Puma) {
+      removeFromParent();
+      game.resetGame();
+    }
   }
 }

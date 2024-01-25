@@ -1,4 +1,5 @@
 import 'package:alpaka_run/game/alpaka_run_game.dart';
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
 class Puma extends SpriteAnimationComponent with HasGameRef<AlpakaRunGame> {
@@ -19,6 +20,8 @@ class Puma extends SpriteAnimationComponent with HasGameRef<AlpakaRunGame> {
         textureSize: Vector2(1024, 512),
       ),
     );
+
+    add(RectangleHitbox(collisionType: CollisionType.passive));
   }
 
   @override

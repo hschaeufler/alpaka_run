@@ -1,15 +1,18 @@
 import 'package:alpaka_run/game/alpaka_run_game.dart';
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
 class Hawk extends SpriteAnimationComponent with HasGameRef<AlpakaRunGame> {
   Hawk()
       : super(
           size: Vector2(200, 200),
-          anchor: Anchor.center,
+          anchor: Anchor.topLeft,
         );
 
   @override
   Future<void> onLoad() async {
+    position = Vector2(game.size.x, 0);
+
     animation = await game.loadSpriteAnimation(
       'hawk_spritesheet.png',
       SpriteAnimationData.sequenced(
@@ -19,8 +22,7 @@ class Hawk extends SpriteAnimationComponent with HasGameRef<AlpakaRunGame> {
       ),
     );
 
-    position.x = game.size.x;
-    position.y = 80;
+    add(RectangleHitbox(collisionType: CollisionType.passive));
   }
 
   @override
