@@ -13,6 +13,8 @@ class AlpakaRunGame extends FlameGame with HasCollisionDetection {
 
   late final Alpaka _alpaka;
 
+  late DateTime _timeStarted;
+
   @override
   Future<void> onLoad() async {
     add(Background());
@@ -29,15 +31,9 @@ class AlpakaRunGame extends FlameGame with HasCollisionDetection {
       maxPeriod: 15,
       selfPositioning: true,
     );
-    add(_alpaka);
     add(_pumaSpawner);
     add(_hawkSpawner);
-  }
-
-  Future<void> resetGame() async {
-    await Future.delayed(const Duration(seconds: 5));
-    _pumaSpawner.timer.reset();
-    _hawkSpawner.timer.reset();
+    _timeStarted = DateTime.now();
     add(_alpaka);
   }
 }

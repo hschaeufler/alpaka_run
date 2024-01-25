@@ -2,6 +2,7 @@ import 'package:alpaka_run/components/hawk.dart';
 import 'package:alpaka_run/components/puma.dart';
 import 'package:alpaka_run/effect/jump_effect.dart';
 import 'package:alpaka_run/game/alpaka_run_game.dart';
+import 'package:alpaka_run/pages/home_page.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
@@ -37,15 +38,19 @@ class Alpaka extends SpriteAnimationComponent
   }
 
   @override
-  void onCollisionStart(
+  Future<void> onCollisionStart(
     Set<Vector2> intersectionPoints,
     PositionComponent other,
-  ) {
+  ) async {
     super.onCollisionStart(intersectionPoints, other);
 
     if (other is Hawk || other is Puma) {
       removeFromParent();
-      game.resetGame();
+      game.overlays.add(HomePage.endGame);
+      await Future.delayed(const Duration(
+        milliseconds: 100,
+      ));
+      game.pauseEngine();
     }
   }
 }
