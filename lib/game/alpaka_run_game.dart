@@ -6,8 +6,6 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 
 class AlpakaRunGame extends FlameGame with HasCollisionDetection {
-  final bottomHeight = 80;
-
   late final SpawnComponent _pumaSpawner;
   late final SpawnComponent _hawkSpawner;
 

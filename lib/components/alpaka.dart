@@ -34,7 +34,16 @@ class Alpaka extends SpriteAnimationComponent
   }
 
   void startJump() {
-    add(JumpEffect(Vector2(0, game.size.y * -0.5)));
+    // only jump when not already in the aur
+    if (playing) {
+      playing = false;
+      add(
+        JumpEffect(
+          Vector2(0, game.size.y * -0.5),
+          onMax: () => playing = true,
+        ),
+      );
+    }
   }
 
   @override
@@ -47,9 +56,11 @@ class Alpaka extends SpriteAnimationComponent
     if (other is Hawk || other is Puma) {
       removeFromParent();
       game.overlays.add(HomePage.endGame);
-      await Future.delayed(const Duration(
-        milliseconds: 100,
-      ));
+      await Future.delayed(
+        const Duration(
+          milliseconds: 100,
+        ),
+      );
       game.pauseEngine();
     }
   }
