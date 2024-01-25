@@ -2,7 +2,11 @@ import 'package:alpaka_run/game/alpaka_run_game.dart';
 import 'package:flame/components.dart';
 
 class Hawk extends SpriteAnimationComponent with HasGameRef<AlpakaRunGame> {
-  Hawk() : super(size: Vector2(250, 250), anchor: Anchor.center);
+  Hawk()
+      : super(
+          size: Vector2(250, 250),
+          anchor: Anchor.center,
+        );
 
   @override
   Future<void> onLoad() async {
