@@ -57,6 +57,7 @@ flutter:
   assets:
      - assets/images/alpaka_spritesheet.png
      - assets/images/puma_spritesheet.png
+     - assets/images/hawk_spritesheet.png
      - assets/images/scenery/hintergrund_0.png
      - assets/images/scenery/hintergrund_1.png
      - assets/images/scenery/hintergrund_2.png
