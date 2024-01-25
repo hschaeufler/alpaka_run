@@ -6,12 +6,13 @@ class Alpaka extends SpriteAnimationComponent
   @override
   Future<void> onLoad() async {
     animation = await game.loadSpriteAnimation(
-        'alpaka_spritesheet.png',
-        SpriteAnimationData.sequenced(
-          amount: 3,
-          stepTime: 0.2,
-          textureSize: Vector2.all(1024),
-        ));
+      'alpaka_spritesheet.png',
+      SpriteAnimationData.sequenced(
+        amount: 3,
+        stepTime: 0.2,
+        textureSize: Vector2.all(1024),
+      ),
+    );
 
     position.x = game.size.x / 2;
     position.y = game.size.y - 75;
