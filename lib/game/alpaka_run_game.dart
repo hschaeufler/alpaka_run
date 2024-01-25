@@ -3,9 +3,10 @@ import 'package:alpaka_run/components/background.dart';
 import 'package:alpaka_run/components/hawk.dart';
 import 'package:alpaka_run/components/puma.dart';
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 
-class AlpakaRunGame extends FlameGame with HasCollisionDetection {
+class AlpakaRunGame extends FlameGame with HasCollisionDetection, TapDetector {
   late final SpawnComponent _pumaSpawner;
   late final SpawnComponent _hawkSpawner;
 
@@ -33,5 +34,11 @@ class AlpakaRunGame extends FlameGame with HasCollisionDetection {
     add(_hawkSpawner);
     _timeStarted = DateTime.now();
     add(_alpaka);
+  }
+
+  @override
+  bool onTapDown(TapDownInfo info) {
+    _alpaka.startJump();
+    return true;
   }
 }

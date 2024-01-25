@@ -5,10 +5,9 @@ import 'package:alpaka_run/game/alpaka_run_game.dart';
 import 'package:alpaka_run/pages/home_page.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:flame/events.dart';
 
 class Alpaka extends SpriteAnimationComponent
-    with HasGameReference<AlpakaRunGame>, TapCallbacks, CollisionCallbacks {
+    with HasGameReference<AlpakaRunGame>, CollisionCallbacks {
   Alpaka() : super(size: Vector2(150, 150), anchor: Anchor.bottomLeft);
 
   @override
@@ -26,11 +25,6 @@ class Alpaka extends SpriteAnimationComponent
     position.y = game.size.y + 5;
 
     add(RectangleHitbox());
-  }
-
-  @override
-  void onTapDown(TapDownEvent event) {
-    startJump();
   }
 
   void startJump() {
