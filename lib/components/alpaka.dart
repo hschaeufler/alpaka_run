@@ -19,7 +19,7 @@ class Alpaka extends SpriteAnimationComponent
     );
 
     position.x = width / 4;
-    position.y = game.size.y;
+    position.y = game.size.y + 5;
   }
 
   @override

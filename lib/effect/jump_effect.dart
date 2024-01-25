@@ -7,7 +7,7 @@ class JumpEffect extends MoveByEffect {
       : super(
           offset,
           EffectController(
-            duration: 0.8,
+            duration: 0.7,
             curve: Curves.easeOutCirc,
             alternate: true,
           ),

@@ -4,7 +4,7 @@ import 'package:flame/components.dart';
 class Hawk extends SpriteAnimationComponent with HasGameRef<AlpakaRunGame> {
   Hawk()
       : super(
-          size: Vector2(250, 250),
+          size: Vector2(200, 200),
           anchor: Anchor.center,
         );
 
