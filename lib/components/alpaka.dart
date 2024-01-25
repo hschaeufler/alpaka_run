@@ -25,4 +25,6 @@ class Alpaka extends SpriteAnimationComponent
   void move(Vector2 delta) {
     position.add(delta);
   }
+
+  void startJump() {}
 }

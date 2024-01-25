@@ -15,7 +15,7 @@ class Hawk extends SpriteAnimationComponent with HasGameRef<AlpakaRunGame> {
       ),
     );
 
-    position.x = game.size.x / 4 * 3;
+    position.x = game.size.x;
     position.y = 80;
   }
 

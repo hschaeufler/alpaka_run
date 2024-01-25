@@ -15,7 +15,20 @@ class Puma extends SpriteAnimationComponent with HasGameRef<AlpakaRunGame> {
       ),
     );
 
-    position.x = game.size.x / 4 * 3;
+    position.x = game.size.x;
     position.y = game.size.y - 100;
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    const speed = -500;
+
+    position.x = position.x + dt * speed;
+
+    if (position.x < 0) {
+      removeFromParent();
+    }
   }
 }
