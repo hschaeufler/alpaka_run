@@ -5,6 +5,8 @@ import 'package:flame/events.dart';
 
 class Alpaka extends SpriteAnimationComponent
     with HasGameReference<AlpakaRunGame>, TapCallbacks {
+  Alpaka() : super(size: Vector2(150, 150), anchor: Anchor.center);
+
   @override
   Future<void> onLoad() async {
     animation = await game.loadSpriteAnimation(
@@ -16,18 +18,14 @@ class Alpaka extends SpriteAnimationComponent
       ),
     );
 
-    position.x = game.size.x / 2;
-    position.y = game.size.y - 75;
+    position.x = width / 4;
+    position.y = game.size.y;
 
-    width = 150;
-    height = 150;
-    anchor = Anchor.center;
+    anchor = Anchor.bottomLeft;
   }
 
   @override
   void onTapDown(TapDownEvent event) {
-    // TODO: implement onTapDown
-    super.onTapDown(event);
     startJump();
   }
 
