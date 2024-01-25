@@ -1,8 +1,7 @@
+import 'package:alpaka_run/effect/jump_effect.dart';
 import 'package:alpaka_run/game/alpaka_run_game.dart';
 import 'package:flame/components.dart';
-import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
-import 'package:flutter/animation.dart';
 
 class Alpaka extends SpriteAnimationComponent
     with HasGameReference<AlpakaRunGame>, TapCallbacks {
@@ -33,15 +32,6 @@ class Alpaka extends SpriteAnimationComponent
   }
 
   void startJump() {
-    add(
-      MoveByEffect(
-        Vector2(0, game.size.y * -0.5),
-        EffectController(
-          duration: 0.4,
-          curve: Curves.fastEaseInToSlowEaseOut,
-          alternate: true,
-        ),
-      ),
-    );
+    add(JumpEffect(Vector2(0, game.size.y * -0.5)));
   }
 }
