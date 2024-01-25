@@ -2,12 +2,13 @@ import 'package:alpaka_run/components/hawk.dart';
 import 'package:alpaka_run/components/puma.dart';
 import 'package:alpaka_run/effect/jump_effect.dart';
 import 'package:alpaka_run/game/alpaka_run_game.dart';
-import 'package:alpaka_run/pages/home_page.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
 class Alpaka extends SpriteAnimationComponent
     with HasGameReference<AlpakaRunGame>, CollisionCallbacks {
+  var isWalking = true;
+
   Alpaka() : super(size: Vector2(150, 150), anchor: Anchor.bottomLeft);
 
   @override
@@ -28,16 +29,16 @@ class Alpaka extends SpriteAnimationComponent
   }
 
   void startJump() {
-    // only jump when not already in the aur
-    if (playing) {
-      playing = false;
-      add(
-        JumpEffect(
-          Vector2(0, game.size.y * -0.5),
-          onMax: () => playing = true,
-        ),
-      );
+    if (!isWalking) {
+      return;
     }
+    isWalking = playing = false;
+    add(
+      JumpEffect(
+        Vector2(0, game.size.y * -0.5),
+        onMax: () => isWalking = playing = true,
+      ),
+    );
   }
 
   @override
@@ -49,13 +50,8 @@ class Alpaka extends SpriteAnimationComponent
 
     if (other is Hawk || other is Puma) {
       removeFromParent();
-      game.overlays.add(HomePage.endGame);
-      await Future.delayed(
-        const Duration(
-          milliseconds: 100,
-        ),
-      );
-      game.pauseEngine();
+      await Future.delayed(const Duration(milliseconds: 100));
+      game.endGame();
     }
   }
 }
